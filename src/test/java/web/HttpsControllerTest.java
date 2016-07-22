@@ -11,8 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import utils.HttpClientUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/spring-context.xml",
-        "classpath:spring/spring-mvc.xml" })
+@ContextConfiguration(locations = { "classpath:spring/spring-context.xml" })
 public class HttpsControllerTest {
 
     @Test
