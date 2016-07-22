@@ -23,11 +23,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @Description: HTTP工具类
- * @see: HttpClientUtil 此处填写需要参考的类
- * @version 2016年4月5日 下午9:44:24
- * @author meng.ren
  */
-
 public class HttpClientUtils {
 
     private static Logger logger = LoggerFactory
