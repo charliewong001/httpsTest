@@ -121,6 +121,8 @@
              <includes>
                  <include>**/*.xml</include>
                  <include>**/*.properties</include>
+                 <include>**/*.keystore</include>
+                 <include>**/*.cer</include>
              </includes>
          </resource>
      </resources>
