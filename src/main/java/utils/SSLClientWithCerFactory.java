@@ -31,7 +31,7 @@ public class SSLClientWithCerFactory {
 
         SSLConnectionSocketFactory factory = new SSLConnectionSocketFactory(
                 sslContext, new String[] { "TLSv1" }, null,
-                SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+                SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
         // SSLConnectionSocketFactory factory = new SSLConnectionSocketFactory(
         // sslContext, new String[] { "TLSv1" }, null,
         // SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);

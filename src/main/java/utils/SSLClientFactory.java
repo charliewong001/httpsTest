@@ -13,6 +13,7 @@ import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -20,8 +21,9 @@ import org.apache.http.impl.client.HttpClients;
 
 @SuppressWarnings("deprecation")
 public class SSLClientFactory {
-    public static CloseableHttpClient getClient()
+    public static CloseableHttpClient getTrustallClient()
             throws NoSuchAlgorithmException, KeyManagementException {
+        // 信任所有证书
         SSLContext ctx = SSLContext.getInstance("TLS");
         X509TrustManager tm = new X509TrustManager() {
             @Override
@@ -40,6 +42,20 @@ public class SSLClientFactory {
             }
         };
         ctx.init(null, new TrustManager[] { tm }, null);
+        SSLConnectionSocketFactory factory = new SSLConnectionSocketFactory(ctx,
+                new String[] { "TLSv1" }, null,
+                SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        CloseableHttpClient client = HttpClients.custom()
+                .setSSLSocketFactory(factory).build();
+
+        return client;
+    }
+
+    public static CloseableHttpClient getTrustselfClient()
+            throws NoSuchAlgorithmException, KeyManagementException {
+        // 信任所有证书
+        SSLContext ctx = SSLContexts.custom().ctx.init(null,
+                new TrustManager[] { tm }, null);
         SSLConnectionSocketFactory factory = new SSLConnectionSocketFactory(ctx,
                 new String[] { "TLSv1" }, null,
                 SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);

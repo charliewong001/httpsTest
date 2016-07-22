@@ -104,7 +104,7 @@ public class HttpClientUtils {
         try {
 
             // closeableHttpClient = new SSLClientFactory();
-            closeableHttpClient = SSLClientFactory.getClient();
+            closeableHttpClient = SSLClientFactory.getTrustallClient();
             httpPost = new HttpPost(url);
             List<NameValuePair> data = MapToNameValuePair(requestData);
             if (data.size() > 0) {
