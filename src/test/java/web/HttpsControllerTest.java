@@ -24,19 +24,28 @@ public class HttpsControllerTest {
     }
 
     @Test
-    public void testRequestByHttpsWithoutCer() {
+    public void testRequestByHttpsTrustall() {
         String url = "https://127.0.0.1:8443/httpsTest/https/request";
         String param = "12345";
         Map<String, String> data = new HashMap<String, String>();
         data.put("orderNo", param);
-        String result = HttpClientUtils.sendRequestWithoutCer("POST", url,
+        String result = HttpClientUtils.sendRequestTrustall("POST", url,
                 "https", data, "utf-8");
         System.out.println(result);
     }
-
+    @Test
+    public void testRequestByHttpsTrustself() {
+        String url = "https://127.0.0.1:8443/httpsTest/https/request";
+        String param = "12345";
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("orderNo", param);
+        String result = HttpClientUtils.sendRequestTrustself("POST", url,
+                "https", data, "utf-8");
+        System.out.println(result);
+    }
     @Test
     public void testRequestByHttpsWithCer() {
-        String url = "https://127.0.0.1:8443/httpsTest/https/request";
+        String url = "https://charlie:8443/httpsTest/https/request";
         String param = "12345";
         Map<String, String> data = new HashMap<String, String>();
         data.put("orderNo", param);
